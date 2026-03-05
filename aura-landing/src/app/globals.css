@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   AURA — Global Design System
+   ============================================ */
+
+:root {
+  --brand-blue: #0367FC;
+  --brand-lime: #D2F801;
+  --brand-white: #FFFFFF;
+  --brand-charcoal: #161616;
+  --color-text: #e8e8e8;
+  --color-text-muted: #888888;
+}
+
+/* ---- Base ---- */
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+body {
+  background: var(--brand-charcoal);
+  color: var(--color-text);
+  overflow-x: hidden;
+  font-family: "General Sans", system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(211, 248, 1, 0.3);
+  color: #fff;
+}
+
+/* ---- Lenis ---- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ---- SVG noise filter ---- */
+.noise-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ---- Glass Utilities ---- */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(210, 248, 1, 0.15);
+  box-shadow: 0 0 40px rgba(210, 248, 1, 0.06), 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ---- Glow Utilities ---- */
+.glow-lime {
+  box-shadow: 0 0 30px rgba(210, 248, 1, 0.15), 0 0 60px rgba(210, 248, 1, 0.05);
+}
+
+.glow-blue {
+  box-shadow: 0 0 30px rgba(3, 103, 252, 0.15), 0 0 60px rgba(3, 103, 252, 0.05);
+}
+
+/* ---- Button light sweep ---- */
+.btn-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sweep::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-sweep:hover::after {
+  left: 130%;
+}
+
+/* ---- Vignette overlay ---- */
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(22, 22, 22, 0.85) 100%);
+}
+
+/* ---- Custom scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #161616;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ---- Accordion ---- */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.accordion-content.open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-content > div {
+  overflow: hidden;
+}
+
+/* ---- Orbit animation for Integrations section ---- */
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbital-container {
+  container-type: inline-size;
+}
