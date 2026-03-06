@@ -2,29 +2,32 @@
 
 import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
+import { Vortex } from "@/components/ui/vortex";
 
 export default function FinalCTA() {
   return (
-    <section className="relative py-32 md:py-44 overflow-hidden">
-      {/* Multi-layered glow background */}
-      <div className="absolute inset-0">
-        {/* Center lime glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-brand-lime/[0.05] rounded-full blur-[160px] animate-glow-pulse" />
-        {/* Blue accents */}
-        <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-brand-blue/[0.04] rounded-full blur-[100px]" />
-        <div className="absolute bottom-[20%] right-[10%] w-[250px] h-[250px] bg-brand-blue/[0.03] rounded-full blur-[80px]" />
-      </div>
+    <section className="relative overflow-hidden h-[36rem] md:h-[40rem] bg-brand-charcoal">
+      <Vortex
+        backgroundColor="black"
+        baseHue={75}
+        rangeY={300}
+        particleCount={400}
+        baseSpeed={0.1}
+        rangeSpeed={1.0}
+        baseRadius={1}
+        rangeRadius={1.5}
+        className="flex items-center flex-col justify-center px-2 md:px-10 w-full h-full"
+      >
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.02] pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+          }}
+        />
 
-      {/* Subtle grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
-
-      <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-8 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-8 text-center">
         <motion.span
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -88,6 +91,7 @@ export default function FinalCTA() {
           </Button>
         </motion.div>
       </div>
+      </Vortex>
     </section>
   );
 }
