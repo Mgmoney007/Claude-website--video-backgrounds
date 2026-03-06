@@ -80,7 +80,9 @@ aura-landing/                          # Next.js 14 project root
 │   ├── app/
 │   │   ├── layout.tsx                 # Root layout (font CDN links, metadata)
 │   │   ├── page.tsx                   # Main page — assembles all sections (client component)
-│   │   └── globals.css                # Global styles: CSS vars, noise texture, glass utilities, scrollbar, accordion, Lenis, orbit-spin keyframes
+│   │   ├── globals.css                # Global styles: CSS vars, noise texture, glass utilities, scrollbar, accordion, Lenis, orbit-spin keyframes
+│   │   └── vortex-demo/
+│   │       └── page.tsx               # Vortex effect demo page
 │   ├── components/
 │   │   ├── SmoothScroll.tsx           # Lenis smooth scroll provider wrapper
 │   │   ├── layout/
@@ -90,7 +92,7 @@ aura-landing/                          # Next.js 14 project root
 │   │   │   ├── Hero.tsx               # Full-screen hero: globe video bg, mouse-reactive parallax gradients, glow halo, scroll indicator
 │   │   │   ├── SocialProof.tsx        # Testimonial cards (3) + stat cards (4) with scroll animations
 │   │   │   ├── Features.tsx           # 6 glass feature cards in 3-col grid with SVG icons
-│   │   │   ├── Integrations.tsx       # Orbital integrations: 3 concentric dashed rings with 8 CSS-animated orbiting icon tiles, central Aura logo, container query sizing
+│   │   │   ├── Integrations.tsx       # Orbital integrations: 7 concentric solid glowing rings (teal→blue→pink gradient), SVG glow filters, 9 orbiting icon tiles (Notion, Stripe, Vercel, GitHub, AWS, Slack, Figma, Shopify, Linear) with ring-colored borders, grid-centered Aura logo with layered lime glow, CSS grid background overlay, container query sizing
 │   │   │   ├── ModularFeatures.tsx    # 6 module cards in 3-col grid with lime/blue color indicators
 │   │   │   ├── ProductPreview.tsx     # Dashboard mockup: browser chrome, stats row, animated bar chart, floating status cards
 │   │   │   ├── ClientFeedback.tsx     # Video testimonial block with play button and glass container
@@ -102,7 +104,10 @@ aura-landing/                          # Next.js 14 project root
 │   │       ├── GlassCard.tsx          # Reusable glassmorphism card: backdrop-blur, rim light, hover glow/lift
 │   │       ├── Button.tsx             # Primary (lime) / secondary (glass) / ghost variants with hover scale
 │   │       ├── SectionHeading.tsx     # Reusable section header: label badge + h2 + subtitle with staggered animations
-│   │       └── VideoBackground.tsx    # Video element with autoplay/loop/muted + dark gradient overlay + vignette + parallax
+│   │       ├── VideoBackground.tsx    # Video element with autoplay/loop/muted + dark gradient overlay + vignette + parallax
+│   │       └── vortex.tsx             # Vortex animation UI component
+│   ├── lib/
+│   │   └── utils.ts                   # Utility functions (cn classname merger)
 │   └── hooks/
 │       ├── useLenis.ts                # Custom hook: initializes Lenis smooth scroll with spring easing
 │       └── useMouseParallax.ts        # Custom hook: tracks mouse position for parallax offset
@@ -120,7 +125,7 @@ aura-landing/                          # Next.js 14 project root
 - **Easing curve:** `[0.23, 1, 0.32, 1]` (spring-like) used consistently across all Framer Motion transitions
 - **Noise texture:** SVG-based noise filter applied globally via `noise-bg` class on `<body>`
 - **Section spacing:** Consistent `py-28 md:py-36` across all sections for luxurious whitespace
-- **Orbital animation:** Integrations section uses CSS `orbit-spin` keyframes with container query units (`cqi`) for responsive radius. Icons counter-rotate to stay upright. Each ring orbits at a different speed/direction.
+- **Orbital animation:** Integrations section uses CSS `orbit-spin` keyframes with container query units (`cqi`) for responsive radius. 7 rings total (3 main + 4 decorative) with SVG glow filters and teal→blue→pink color gradient. Icons counter-rotate to stay upright, have ring-colored borders, and each ring orbits at a different speed/direction. Center logo uses grid centering with layered lime glow halos. Background includes CSS grid overlay.
 
 ### Brand Assets Location
 ```
